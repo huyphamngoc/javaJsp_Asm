@@ -48,10 +48,11 @@ public class FeedbackModel {
             ArrayList<Feedback> listFeedback = new ArrayList<Feedback>();
 
             while (rs.next()){
+                int id = rs.getInt(1);
                 int status1 = rs.getInt(4);
                 String content = rs.getString(3);
                 String username =  rs.getString(2);
-                Feedback fb = new Feedback(content,status1,username);
+                Feedback fb = new Feedback(username,content,status1,id);
                 listFeedback.add(fb);
             }
             return listFeedback;
@@ -80,6 +81,18 @@ public class FeedbackModel {
 
         }catch (Exception e){
             System.out.println("SQL select "+ e );
+        }
+        return null;
+    }
+
+    public Feedback deleteFeedback(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM FeedBack WHERE id=?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            System.out.println("Delete Success");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

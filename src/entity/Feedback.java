@@ -8,6 +8,16 @@ public class Feedback {
     private String conTent;
     private int status;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
     public Feedback() {
     }
 
@@ -20,6 +30,13 @@ public class Feedback {
         this.userName = username;
         this.conTent = content;
         this.status = status;
+    }
+
+    public Feedback(String userName, String conTent, int status, int id) {
+        this.userName = userName;
+        this.conTent = conTent;
+        this.status = status;
+        this.id = id;
     }
 
     public String getUserName() {

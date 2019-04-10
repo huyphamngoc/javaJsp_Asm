@@ -49,7 +49,7 @@
                         <tr>
                             <td><%=b.getUserName()%></td>
                             <td><%=b.getConTent()%></td>
-                            <td>Delete</td>
+                            <td><a href="/delete?id=<%=b.getId()%>">Delete</a></td>
                         </tr>
                         <%
                             }

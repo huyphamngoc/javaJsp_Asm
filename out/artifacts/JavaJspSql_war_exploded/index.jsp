@@ -16,7 +16,6 @@
     if (feedbacks1 == null){
         feedbacks1 = new ArrayList<>();
     }
-    System.out.println(feedbacks1);
 %>
 <html>
   <head>
@@ -35,25 +34,12 @@
             <div class="col-md-12">
                 <h3 class="text-center">Feedback System</h3>
             </div>
-
-            <%--<div>--%>
-                <%--<%if (feedbacks1.size() > 0 ){--%>
-                    <%--for ( Feedback feedbacks : feedbacks1  ) {--%>
-                <%--%>--%>
-
-                <%--<span> <%= feedbacks.getConTent() %> </span>--%>
-
-                <%--<%}--%>
-                <%--}%>--%>
-            <%--</div>--%>
-
             <div class="col-md-12">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>Username</th>
                         <th>Content</th>
-                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,17 +47,14 @@
                     <%if (feedbacks1.size() > 0 ){
                         for ( Feedback feedbacks : feedbacks1  ) {
                     %>
-
                     <tr>
                         <td><%=feedbacks.getUserName()%></td>
                         <td><%=feedbacks.getConTent()%></td>
                     </tr>
-
                     <%
                         }
                     }
                     %>
-
                     </tbody>
                 </table>
             </div>
