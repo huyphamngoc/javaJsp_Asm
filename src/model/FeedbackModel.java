@@ -2,18 +2,28 @@ package model;
 
 import entity.Feedback;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class FeedbackModel {
 
-    public boolean insert(Feedback feedback){
-        Connection connection;
-        ConnectSql connectSql = new ConnectSql();
+    private static Connection connection;
+    static {
         try {
+            ConnectSql connectSql = new ConnectSql();
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connectSql.URL  ,connectSql.USER,connectSql.PASS);
+            connection =  DriverManager.getConnection(connectSql.URL  ,connectSql.USER,connectSql.PASS);
+        } catch (SQLException e) {
+            System.out.println("SQLException " + e.getMessage());
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean insert(Feedback feedback){
+
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into feedback (username,content,status) value (?,?,?)");
             preparedStatement.setString(1, feedback.getUserName());
             preparedStatement.setString(2, feedback.getConTent());
@@ -25,5 +35,52 @@ public class FeedbackModel {
             System.out.println("SQL" + e.getMessage());
         }
         return false;
+    }
+
+    public ArrayList<Feedback> selectFeedbackAdmin(){
+
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Feedback WHERE status =2");
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            ArrayList<Feedback> listFeedback = new ArrayList<Feedback>();
+
+            while (rs.next()){
+                int status1 = rs.getInt(4);
+                String content = rs.getString(3);
+                String username =  rs.getString(2);
+                Feedback fb = new Feedback(content,status1,username);
+                listFeedback.add(fb);
+            }
+            return listFeedback;
+
+        }catch (Exception e){
+            System.out.println("SQL select "+ e );
+        }
+        return null;
+    }
+
+    public ArrayList<Feedback> selectFeedbackHome(){
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Feedback WHERE status =1");
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<Feedback> listFeedback = new ArrayList<Feedback>();
+
+            while (rs.next()){
+                int status1 = rs.getInt(4);
+                String content = rs.getString(3);
+                String username =  rs.getString(2);
+                Feedback fb = new Feedback(content,status1,username);
+                listFeedback.add(fb);
+            }
+            return listFeedback;
+
+        }catch (Exception e){
+            System.out.println("SQL select "+ e );
+        }
+        return null;
     }
 }

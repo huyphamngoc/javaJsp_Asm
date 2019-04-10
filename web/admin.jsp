@@ -10,7 +10,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     ArrayList<Feedback> feedbacks = (ArrayList<Feedback>) request.getAttribute("listFeedback");
-
 %>
 
 <html>

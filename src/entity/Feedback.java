@@ -16,6 +16,12 @@ public class Feedback {
         this.conTent = conTent;
     }
 
+    public Feedback(String content, int status, String username) {
+        this.userName = username;
+        this.conTent = content;
+        this.status = status;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -41,8 +47,6 @@ public class Feedback {
     }
 
     private HashMap<String, ArrayList<String>> errors ;
-
-
 
     public boolean isValid(){
         validate();

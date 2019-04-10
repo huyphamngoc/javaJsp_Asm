@@ -23,15 +23,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>HomepageController</servlet-name>
-        <servlet-class>controller.HomepageController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomepageController</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>AdminController</servlet-name>
         <servlet-class>controller.AdminController</servlet-class>
     </servlet>
@@ -58,4 +49,5 @@
         <url-pattern>/feedback</url-pattern>
         <url-pattern>/admin</url-pattern>
     </filter-mapping>
+
 </web-app>
